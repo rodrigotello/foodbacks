@@ -1,0 +1,8 @@
+<h1>Home</h1>
+
+<% if user_signed_in? %>
+  Logged in as <%= current_user.email %> |
+  <%= link_to 'Sign out', destroy_authentication_session_path, method: :delete %>
+<% else %>
+  <%= link_to 'Sign in', new_authentication_session_path %>
+<% end %>
