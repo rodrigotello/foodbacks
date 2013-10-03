@@ -1,0 +1,20 @@
+<header class="navbar">
+  <!--div class="navbar-inner"-->
+    <div class="container">
+      <div class="nav">
+        <h1>Foodbacks</h1>
+      </div>
+      <nav>
+        <ul class="nav pull-right">
+          <li><%= link_to "Inicio", root_path %></li>
+          <li><%= link_to "Acerca", help_path %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to 'Salir', destroy_authentication_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'Iniciar Sesión', new_authentication_session_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  <!--/div-->
+</header>

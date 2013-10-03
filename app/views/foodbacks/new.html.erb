@@ -1,0 +1,51 @@
+<% provide(:title, 'New Foodback') %>
+<h1>Crea un Foodback</h1>
+<h2>Preparar comida es la mejor forma de dar las gracias</h2>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@foodback) do |f| %>
+      <%= render 'shared/error_messages', object: @foodback %>
+
+      <%= f.label :title, 'Título de tu invitación' %>
+      <%= f.text_field :title %>
+
+      <%= f.label :invited, 'Nombre de tu invitado' %>
+      <%= f.text_field :invited %>
+
+      <%= f.label :address, 'Dirección' %>
+      <%= f.text_area :address %>
+
+      <%= f.label :content, 'Mensaje' %>
+      <%= f.text_field :content %>
+
+      <%= f.label :dish, 'Platillo' %>
+      <%= f.text_field :dish %>
+
+      <%= f.label :recipe, 'Receta' %>
+      <%= f.text_area :recipe %>
+
+      <%= f.label :cover, 'Cover' %>
+      <%= f.file_field :cover %>
+
+      <%# f.label :date %>
+      <%# f.datetime_field :date %>
+
+      <%= f.submit "Create a Foodback", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+attr_accessible
+
+YA :user_id,
+YA :address,
+:city,
+YA :content,
+:cover,
+:date,
+YA :dish,
+YA :invited,
+:invitedmail,
+YA :recipe,
+YA :title

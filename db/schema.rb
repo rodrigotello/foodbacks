@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130831065852) do
+ActiveRecord::Schema.define(:version => 20131003055739) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -23,6 +23,28 @@ ActiveRecord::Schema.define(:version => 20130831065852) do
   end
 
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
+
+  create_table "foodbacks", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "content"
+    t.string   "cover"
+    t.string   "invited"
+    t.string   "invitedmail"
+    t.datetime "date"
+    t.integer  "city"
+    t.string   "address"
+    t.string   "dish"
+    t.text     "recipe"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "cover_file_name"
+    t.string   "cover_content_type"
+    t.integer  "cover_file_size"
+    t.datetime "cover_updated_at"
+  end
+
+  add_index "foodbacks", ["user_id", "city", "created_at"], :name => "index_foodbacks_on_user_id_and_city_and_created_at"
 
   create_table "users", :force => true do |t|
     t.string   "name"

@@ -1,0 +1,2 @@
+module FoodbacksHelper
+end

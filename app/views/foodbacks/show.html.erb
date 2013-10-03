@@ -1,0 +1,20 @@
+<h2><%= @foodback.title %> </h2>
+De: <%= @foodback.user.name %>
+Para: <%= @foodback.invited %>
+"<%= @foodback.content %>"
+Dónde: <%= @foodback.address %>
+Platillo: <%= @foodback.dish %>
+
+<% if @foodback.user.id == current_user.id %>
+<%= link_to 'Eliminar', @foodback, method: :delete, confirm: "¿Estás seguro de eliminar a este elemento?" %>
+<% end %>
+<%#= link_to 'Eliminar', c, method: :delete, title: "Eliminar este colaborador del proyecto", confirm: "¿Estás seguro de eliminar a este colaborador?" %>
+
+<a href="https://twitter.com/share" class="twitter-share-button" data-text="He invitado a <% @foodback.invited %>  usuario a compartir este Foodback">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<%= link_to 'twitter', "https://twitter.com/share?url=http://www.google.com&text=This is awesome!", class: 'btn' %>
+
+<div class="btn">
+<a href="https://twitter.com/share?..." onclick="window.open(this.href);return false;">Tweet</a>
+</div>

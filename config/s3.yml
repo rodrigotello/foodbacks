@@ -1,0 +1,9 @@
+development:
+  bucket: foodbacks
+  access_key_id: AKIAIQR6RFFJY2HFCPTA
+  secret_access_key: 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
+
+production:
+  bucket: foodbacks
+  access_key_id: AKIAIQR6RFFJY2HFCPTA
+  secret_access_key: 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

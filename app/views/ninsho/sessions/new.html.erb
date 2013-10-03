@@ -1,3 +1,11 @@
-<%- @providers.each do |provider| %>
-  <%= link_to provider.to_s, "auth/#{provider.to_s}" %>
-<%- end%>
+<div class="container">
+	<div class="offset2">
+		<h2>Unete a la comunidad de Foodbacks:</h2>
+		<p>
+		
+		<%- @providers.each do |provider| %>
+  		<%= link_to provider.to_s, "auth/#{provider.to_s}", class: 'btn btn-info btn-large' %>
+		<%- end%>
+		
+	</div>
+</div>
