@@ -14,10 +14,10 @@
       <%= f.text_field :invited %>
 
       <%= f.label :address, 'Dirección' %>
-      <%= f.text_area :address %>
+      <%= f.text_field :address %>
 
       <%= f.label :content, 'Mensaje' %>
-      <%= f.text_field :content %>
+      <%= f.text_area :content %>
 
       <%= f.label :dish, 'Platillo' %>
       <%= f.text_field :dish %>
@@ -40,7 +40,7 @@ attr_accessible
 
 YA :user_id,
 YA :address,
-:city,
+:city, <%# Agregarla duramente hasta que se tenga que incorporar mas ciudades %>
 YA :content,
 :cover,
 :date,
@@ -49,3 +49,6 @@ YA :invited,
 :invitedmail,
 YA :recipe,
 YA :title
+
+#Categories: 
+# orgánica, vegetariana, local, receta de la abuela, sustentable,  

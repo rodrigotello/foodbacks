@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="span6 offset3">
+    Cuéntanos sobre ti:
+       <%= form_for(@user) do |f| %>
+       <%= f.text_field :name, :placeholder => "Tu nombre..." %>
+        <br/>
+        <%= f.submit "Guardar", class: "btn" %>
+        <% end %>
+  </div>
+</div>
+

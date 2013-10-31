@@ -8,7 +8,9 @@ gem 'omniauth-facebook'
 
 gem 'paperclip'
 gem 'aws-s3'
-gem 'aws-sdk', '1.5.8'
+gem 'aws-sdk'
+
+gem 'fb_graph'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

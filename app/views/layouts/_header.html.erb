@@ -6,8 +6,8 @@
       </div>
       <nav>
         <ul class="nav pull-right">
-          <li><%= link_to "Inicio", root_path %></li>
-          <li><%= link_to "Acerca", help_path %></li>
+          <li><%= link_to "Inicio", foodbacks_path %></li>
+          <li><%= link_to "Acerca", about_path %></li>
           <% if user_signed_in? %>
             <li><%= link_to 'Salir', destroy_authentication_session_path, method: :delete %></li>
           <% else %>

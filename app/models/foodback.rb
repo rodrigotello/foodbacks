@@ -4,6 +4,8 @@ class Foodback < ActiveRecord::Base
   belongs_to :user
   belongs_to :city
 
+  has_and_belongs_to_many :categories
+
   has_attached_file :cover
 
   validates :user_id, presence: true

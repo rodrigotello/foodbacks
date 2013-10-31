@@ -5,24 +5,20 @@
 <div id="mbbackground">
   <div id="mainbanner">
     <!--div class="container"-->
-      <h1>Bienvenido a Foodbacks</h1>
-      <h2>Comparte comida hecha por ti y agradece a alguien más</h2>
-
-
-
+    <h1>Bienvenido a Foodbacks</h1>
+    <h2>Comparte comida hecha por ti y agradece a alguien más</h2>
+    <h3>Comienza a descubrir Foodbacks en <%= link_to 'Monterrey', foodbacks_path %> </h3>
         <% if user_signed_in? %>
-          Hola,
-          	<% if current_user.name	%>
-          	<%= current_user.name %>
-          	<% else %>
-          	<%= '¿cómo te llamas?' %>
-          	<% end %>
-          <%# link_to 'Sign out', destroy_authentication_session_path, method: :delete %>
+          <% link_to 'Sign out', destroy_authentication_session_path, method: :delete %>
           <br>
-          <%= link_to 'Crea un Foodback', new_foodback_path, class: 'btn btn-primary btn-large' %>
+          <%= link_to 'Crea un Foodback', new_foodback_path, class: 'btn btn-primary btn-large' %>          
         <% else %>
-          <%= link_to 'Iniciar sesión', new_authentication_session_path, class: 'btn' %>
+          <%= link_to 'Únete a Foodbacks', new_authentication_session_path, class: 'btn' %>
         <% end %>
       <!--/div-->
+      <%= @fbuser.name %>
+      <%= image_tag @fbuser.picture %>
+
+      <%#= @fbuser.feed %>
   </div>
 </div>

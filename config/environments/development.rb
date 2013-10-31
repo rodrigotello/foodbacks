@@ -38,11 +38,12 @@ Happinessapp::Application.configure do
     config.paperclip_defaults = {
     :storage => :s3,
     :s3_protocol => 'http',
-    :bucket => ENV['foodbacks'],
+    :bucket => 'foodbacks',
     :s3_credentials => {
-      :access_key_id => ENV['AKIAIQR6RFFJY2HFCPTA'],
-      :secret_access_key => ENV['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']
-  }
-}
+      :access_key_id => 'AKIAIQR6RFFJY2HFCPTA',
+      :secret_access_key => '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',
+
+      }
+    }
 
 end

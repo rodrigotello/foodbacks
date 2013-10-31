@@ -1,20 +1,44 @@
-<h2><%= @foodback.title %> </h2>
-De: <%= @foodback.user.name %>
-Para: <%= @foodback.invited %>
-"<%= @foodback.content %>"
-Dónde: <%= @foodback.address %>
-Platillo: <%= @foodback.dish %>
+<div class="container">
+	<%= image_tag @foodback.cover %>
+	<div class="row-fluid">
+		<h2><%= @foodback.title %> </h2>
 
-<% if @foodback.user.id == current_user.id %>
-<%= link_to 'Eliminar', @foodback, method: :delete, confirm: "¿Estás seguro de eliminar a este elemento?" %>
-<% end %>
-<%#= link_to 'Eliminar', c, method: :delete, title: "Eliminar este colaborador del proyecto", confirm: "¿Estás seguro de eliminar a este colaborador?" %>
+		<h4>De: <%= @foodback.user.name %></h4>
 
-<a href="https://twitter.com/share" class="twitter-share-button" data-text="He invitado a <% @foodback.invited %>  usuario a compartir este Foodback">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+		<h4>Para: <%= @foodback.invited %></h4>
 
-<%= link_to 'twitter', "https://twitter.com/share?url=http://www.google.com&text=This is awesome!", class: 'btn' %>
+		<h4><%= @foodback.content %>"</h4>
 
-<div class="btn">
-<a href="https://twitter.com/share?..." onclick="window.open(this.href);return false;">Tweet</a>
+		<% if current_user.id = @foodback.user.id %>
+				<h4>Dónde: <%= @foodback.address %></h4>
+		<% end %>
+		
+		<h4>Platillo: <%= @foodback.dish %></h4>
+
+		<% if @foodback.user.id == current_user.id %>
+				<%= link_to 'Editar', edit_foodback_path %>
+				<br/>
+				<%= link_to 'Eliminar', @foodback, method: :delete, confirm: "¿Estás seguro de eliminar a este elemento?" %>
+				<% else %>
+		<% end %>
+		
+		<h4>Receta:</h4>
+
+		<h4>
+			<%= @foodback.recipe %>
+		</h4 >
+		<h3>Comparte este Foodback en Monterrey</h3>
+
+			<%#= link_to 'Twitter', "https://twitter.com/share?url=" + "http://www.google.com" + "&text=" + "Compartiendo un Foodback en mi ciudad", class: 'btn', :target => '_blank' %>
+			
+				<%= link_to 'Facebook', 'facebook.com', class: 'btn', :target => '_blank'  %>
+			
+			
+				<%= link_to 'Pinterest', 'pinterest.com', class: 'btn', :target => '_blank'  %>
+				<a href="http://pinterest.com/pin/create/button/?url={URI-encoded URL of the page to pin}&media={URI-encoded URL of the image to pin}&description={optional URI-encoded description}" class="pin-it-button" count-layout="horizontal">
+    <img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" />
+</a>
+	</div>
 </div>
+
+<a href="//www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=http%3A%2F%2Ffarm8.staticflickr.com%2F7027%2F6851755809_df5b2051c9_z.jpg&description=Next%20stop%3A%20Pinterest" data-pin-do="buttonPin" data-pin-config="above"><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a>

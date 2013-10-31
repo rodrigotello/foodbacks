@@ -1,24 +1,33 @@
 <div class="container">
-<h2>Descubre Foodbacks en Monterrey</h2>
-	<div class="container">
-		<div class="row-fluid">
-			<div class="span9">
-				<% @allfoodback.each do |foodback| %>
-					<div class="fbthumbnail">
-						<h1><%= link_to foodback.title, foodback %></h1>
-						<p>De: <%= foodback.user.name %> </p>
-						<p>Para: <%= foodback.invited %> </p>
-						<%= foodback.dish %>			
-					</div>
-				<% end %>
-			</div>
-			<div class="span3">
-				<% if user_signed_in? %>
-				<%= link_to 'Crea un Foodback', new_foodback_path, class: 'btn btn-primary btn-block btn-large' %>
-				<% else %>
-				<!--This section, including the button is intended to be some kind of banner -->
-				<% end %>
+	<% if user_signed_in? %>
+	<h3>Hola,
+	          	<% if current_user.name	%>
+	          	<%= current_user.name %>
+	          	<% else %>
+	          	<%= '¿cómo te llamas?' %>
+	          	<% end %>
+	          </h3>
+	<% end %>
+	<h3>Descubre Foodbacks en Monterrey</h3>
+		<div class="container">
+			<div class="row-fluid">
+				<div class="span9">
+					<% @allfoodback.each do |foodback| %>
+						<div class="fbthumbnail">
+							<h1><%= link_to foodback.title, foodback %></h1>
+							<p>De: <%= foodback.user.name %> </p>
+							<p>Para: <%= foodback.invited %> </p>
+							<%= foodback.dish %>			
+						</div>
+					<% end %>
+				</div>
+				<div class="span3">
+					<% if user_signed_in? %>
+					<%= link_to 'Crea un Foodback', new_foodback_path, class: 'btn btn-primary btn-block btn-large' %>
+					<% else %>
+					<!--This section, including the button is intended to be some kind of banner -->
+					<% end %>
+				</div>
 			</div>
 		</div>
-	</div>
 </div>

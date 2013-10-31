@@ -1,0 +1,10 @@
+<% provide(:title, "Hola") %>
+<h2>Hola, <%= @user.name %></h2>
+
+	<% if current_user.id == @user.id %>
+	<%= link_to "Editar", edit_user_path, class: "btn" %>
+	<% end %>
+	<%# @user.foodbacks.all.each do |w| %>
+		<div class=<%#= w.color.name %> ><p><%#= w.text %></p></div>
+	<%# end %>
+
