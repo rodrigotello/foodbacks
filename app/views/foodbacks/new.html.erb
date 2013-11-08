@@ -12,9 +12,9 @@ sdfdsfghsfghsdfgh
 <% provide(:title, 'New Foodback') %>
 <h1>Crea un Foodback</h1>
 <h2>Preparar comida es la mejor forma de dar las gracias</h2>
-
 <div class="row">
   <div class="span6 offset3">
+    
     <%= form_for(@foodback) do |f| %>
       <%= render 'shared/error_messages', object: @foodback %>
 
@@ -23,6 +23,7 @@ sdfdsfghsfghsdfgh
 
       <%= f.label :invited, 'Nombre de tu invitado' %>
       <%= f.text_field :invited %>
+      <%# select_tag "bffs", options_from_collection_for_select(@bffs, "identifier", "name"), include_blank: true %>
 
       <%= f.label :address, 'Dirección' %>
       <%= f.text_field :address %>

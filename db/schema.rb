@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131011061726) do
+ActiveRecord::Schema.define(:version => 20131107020459) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20131011061726) do
     t.string   "oauth_token"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "token"
   end
 
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
