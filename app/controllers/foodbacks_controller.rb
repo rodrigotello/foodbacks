@@ -3,8 +3,15 @@ class FoodbacksController < ApplicationController
 	def create
 		@foodback = current_user.foodbacks.build(params[:foodback])
 		if @foodback.save
+			#omniauth = request.env["omniauth.auth"]
+			#facebook_user_token = omniauth['credentials']['token']
+
+			me = FbGraph::User.me(current_user.authentications.first.token)
+			me.link!(  :link => 'https://.foodbacks.com',  :message => 'I just posted a Foodback')
+			#me.feed!(  :message => 'Foodback',  :description => 'Foodback test')
 			flash[:success] = "Foodback created!"
 			redirect_to @foodback
+
 		else
 			render 'new'
 		end
@@ -30,6 +37,10 @@ class FoodbacksController < ApplicationController
 			redirect_to root_path
 		end
 		@foodback = current_user.foodbacks.new
+		#me = FbGraph::User.me(current_user.authentications.first.token)
+		#@bffs = me.friends
+		#@current_word = @words.detect{|w| w.id == params[:id2]}
+		#@list.sort_by{|e| -e[:time_ago]}
 	end
 
 	def edit
