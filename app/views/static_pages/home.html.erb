@@ -11,13 +11,15 @@
         <% if user_signed_in? %>
           <% link_to 'Sign out', destroy_authentication_session_path, method: :delete %>
           <br>
-          <%= link_to 'Crea un Foodback', new_foodback_path, class: 'btn btn-primary btn-large' %>          
+          <%= link_to 'Crea un Foodback', new_foodback_path, class: 'btn btn-primary btn-large' %>     
+          <%= @fbuser.name %>
+          <%= image_tag @fbuser.picture %>
+
         <% else %>
           <%= link_to 'Únete a Foodbacks', new_authentication_session_path, class: 'btn' %>
         <% end %>
       <!--/div-->
-      <%= @fbuser.name %>
-      <%= image_tag @fbuser.picture %>
+      
 
       <%#= @fbuser.feed %>
   </div>
