@@ -1,5 +1,6 @@
 <div class="container">
-	<%= image_tag @foodback.cover %>
+	<%#= image_tag @foodback.cover %>
+	<%= image_tag 'foodbackcover.jpg' %>
 	<div class="row-fluid">
 		<h2><%= @foodback.title %> </h2>
 
@@ -15,6 +16,12 @@
 		
 		<h4>Platillo: <%= @foodback.dish %></h4>
 
+		<h4>Receta:</h4>
+
+		<h4>
+			<%= @foodback.recipe %>
+		</h4 >
+		
 		<% if @foodback.user.id == current_user.id %>
 				<%= link_to 'Editar', edit_foodback_path %>
 				<br/>
@@ -22,11 +29,6 @@
 				<% else %>
 		<% end %>
 		
-		<h4>Receta:</h4>
-
-		<h4>
-			<%= @foodback.recipe %>
-		</h4 >
 		<h3>Comparte este Foodback en Monterrey</h3>
 
 			<%#= link_to 'Twitter', "https://twitter.com/share?url=" + "http://www.google.com" + "&text=" + "Compartiendo un Foodback en mi ciudad", class: 'btn', :target => '_blank' %>

@@ -1,15 +1,22 @@
 class FoodbacksController < ApplicationController
 
+	def index
+		@allfoodback = Foodback.all
+	end
+	
+	def show
+		@foodback=Foodback.find(params[:id])
+	end
+
 	def create
 		@foodback = current_user.foodbacks.build(params[:foodback])
 		if @foodback.save
 			#omniauth = request.env["omniauth.auth"]
 			#facebook_user_token = omniauth['credentials']['token']
-
 			me = FbGraph::User.me(current_user.authentications.first.token)
-			me.link!(  :link => 'https://.foodbacks.com',  :message => 'I just posted a Foodback')
-			#me.feed!(  :message => 'Foodback',  :description => 'Foodback test')
-			flash[:success] = "Foodback created!"
+			me.link!( :link => 'https://foodbacks.com',  :message => 'Acabo de crear un Foodback')
+			#me.feed!( :message => 'Foodback', :description => 'Foodback test')
+			flash[:success] = "Genial, creaste un Foodback!"
 			redirect_to @foodback
 
 		else
@@ -27,9 +34,7 @@ class FoodbacksController < ApplicationController
 
 	end
 
-	def show
-		@foodback=Foodback.find(params[:id])
-	end
+
 
 	def new
 		if !user_signed_in?
@@ -63,7 +68,5 @@ class FoodbacksController < ApplicationController
 		end
 	end
 
-	def index
-		@allfoodback = Foodback.all
-	end
+
 end

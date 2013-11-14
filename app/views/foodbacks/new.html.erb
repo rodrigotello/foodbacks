@@ -1,13 +1,3 @@
-sdfdsfghsfghsdfgh
-          <select name="herolist">
-            <option value="0">Choose hero</option>
-            <option value="1">Spider Man</option>
-            <option value="2">Wolverine</option>
-            <option value="3">Captain America</option>
-            <option value="X-Men" selected="selected">X-Men</option>
-            <option value="Crocodile">Crocodile</option>
-          </select>
-          fsghdgfhdfgh
 
 <% provide(:title, 'New Foodback') %>
 <h1>Crea un Foodback</h1>
@@ -19,7 +9,7 @@ sdfdsfghsfghsdfgh
       <%= render 'shared/error_messages', object: @foodback %>
 
       <%= f.label :title, 'Título de tu invitación' %>
-      <%= f.text_field :title %>
+      <%= f.text_field :title, placeholder: 'Ej. "Gracias por apoyarme"' %>
 
       <%= f.label :invited, 'Nombre de tu invitado' %>
       <%= f.text_field :invited %>
@@ -28,42 +18,39 @@ sdfdsfghsfghsdfgh
       <%= f.label :address, 'Dirección' %>
       <%= f.text_field :address %>
 
-      <%= f.label :content, 'Mensaje' %>
-      <%= f.text_area :content %>
+      <%= f.label :content, 'Mensaje'%>
+      <%= f.text_area :content, placeholder:'Cuéntanos tu historia, por qué quieres dar las gracias.'  %>
 
       <%= f.label :dish, 'Platillo' %>
-      <%= f.text_field :dish %>
+      <%= f.text_field :dish, placeholder: 'Ej. Mole de la abuela' %>
 
       <%= f.label :recipe, 'Receta' %>
-      <%= f.text_area :recipe %>
+      <%= f.text_area :recipe, placeholder: 'Cuéntanos tu receta y no olvides decirnos por qué es especial.' %>
 
-      <%= f.label :cover, 'Cover' %>
-      <%= f.file_field :cover %>
+      <%#= f.label :cover, 'Cover' %>
+      <%#= f.file_field :cover %>
 
       <%# f.label :date %>
       <%# f.datetime_field :date %>
-
-      <%= f.submit "Create a Foodback", class: "btn btn-large btn-primary" %>
+      <br/>
+      <%= f.submit "Crear este Foodback", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 </div>
 
-attr_accessible
-
-YA :user_id,
-YA :address,
-:city, <%# Agregarla duramente hasta que se tenga que incorporar mas ciudades %>
-YA :content,
-:cover,
-:date,
-YA :dish,
-YA :invited,
-:invitedmail,
-YA :recipe,
-YA :title
-
-#Categories: 
-# orgánica, vegetariana, local, receta de la abuela, sustentable,  
 
 
+What you want to thank for ¿
 
+What is so special about this food?
+Suggestion categories (with graphics)
+  sustainable (no toxic chemicals, water saving) 
+  Local (harvested localy)
+  Identity
+  Community buliding (collaboration between local providers)
+  vegetarian
+  Upload Picture/video
+
+Share on facebook/ chance that people put likes
+
+Details about space and time (private)
