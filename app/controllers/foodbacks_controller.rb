@@ -13,10 +13,11 @@ class FoodbacksController < ApplicationController
 		if @foodback.save
 			#omniauth = request.env["omniauth.auth"]
 			#facebook_user_token = omniauth['credentials']['token']
+
 			me = FbGraph::User.me(current_user.authentications.first.token)
-			me.link!( :link => 'https://foodbacks.com',  :message => 'Acabo de crear un Foodback')
-			#me.feed!( :message => 'Foodback', :description => 'Foodback test')
-			flash[:success] = "Genial, creaste un Foodback!"
+			me.link!(  :link => 'https://foodbacks.com',  :message => 'I just posted a Foodback')
+			#me.feed!(  :message => 'Foodback',  :description => 'Foodback test')
+			flash[:success] = "Creaste un Foodback exitosamente!"
 			redirect_to @foodback
 
 		else
@@ -28,13 +29,11 @@ class FoodbacksController < ApplicationController
 		@foodback = Foodback.find(params[:id])
 		if (current_user.id == @foodback.user.id)
 		@foodback.destroy
-		flash[:success] = "Foodback erased."
+		flash[:success] = "Foodback borrado."
 		end
 		redirect_to root_path
 
 	end
-
-
 
 	def new
 		if !user_signed_in?
@@ -42,6 +41,38 @@ class FoodbacksController < ApplicationController
 			redirect_to root_path
 		end
 		@foodback = current_user.foodbacks.new
+		me = FbGraph::User.me(current_user.authentications.first.token)
+		@bffs = me.friends
+
+		friends = []
+		if params[:term]
+			@bffs.each do |f| 
+				if f.name.include? params[:term]
+					friends << f
+				end
+			end
+			#@people = @bffs.detect{|f| f.name == "%#{params[:term]}%"}
+		    #@people = Person.find(:all,:conditions => ['given_name LIKE ?', "#{params[:term]}%"])
+		else
+		    #@people = @bffs
+		    @bffs.each do |f| 
+				if f.name.include? "Ja"
+					friends << f
+				end
+			end
+		end
+
+		@people = friends
+		
+		#@people = User.all
+		  respond_to do |format|  
+		    format.html # index.html.erb  
+		# Here is where you can specify how to handle the request for "/people.json"
+		#:json => @people.map{|u| {:id => u.id, :name => u.name}}.to_json }
+		    format.json { render :json => @people.map{|u| {:id => u.identifier, :name => u.name}}.to_json }
+		end
+
+
 		#me = FbGraph::User.me(current_user.authentications.first.token)
 		#@bffs = me.friends
 		#@current_word = @words.detect{|w| w.id == params[:id2]}

@@ -1,3 +1,27 @@
+<script type="text/javascript">
+    $(function() {
+
+    $('#select_origin').autocomplete({
+            minLength: 1,
+            source: '<%= new_foodback_path(:json) %>',
+            focus: function(event, ui) {
+                $('#select_origin').val(ui.item.name);
+                return false;
+            },
+            select: function(event, ui) {
+                $('#select_origin').val(ui.item.name);
+        $('#link_origin_id').val(ui.item.id);
+                return false;
+            }
+        })
+        .data( "autocomplete" )._renderItem = function( ul, item ) {
+            return $( "<li></li>" )
+                .data( "item.autocomplete", item )
+                .append( "<a>" + item.name + "</a>" )
+                .appendTo( ul );
+        };
+    });
+    </script>
 
 <% provide(:title, 'New Foodback') %>
 <h1>Crea un Foodback</h1>
@@ -12,8 +36,9 @@
       <%= f.text_field :title, placeholder: 'Ej. "Gracias por apoyarme"' %>
 
       <%= f.label :invited, 'Nombre de tu invitado' %>
-      <%= f.text_field :invited %>
-      <%# select_tag "bffs", options_from_collection_for_select(@bffs, "identifier", "name"), include_blank: true %>
+      <%#= f.text_field :invited %>
+      <%= f.text_field :invited, id: "select_origin" %>
+      <input id="link_origin_id" name="link[origin_id]" type="hidden"/>
 
       <%= f.label :address, 'Dirección' %>
       <%= f.text_field :address %>
@@ -37,20 +62,3 @@
     <% end %>
   </div>
 </div>
-
-
-
-What you want to thank for ¿
-
-What is so special about this food?
-Suggestion categories (with graphics)
-  sustainable (no toxic chemicals, water saving) 
-  Local (harvested localy)
-  Identity
-  Community buliding (collaboration between local providers)
-  vegetarian
-  Upload Picture/video
-
-Share on facebook/ chance that people put likes
-
-Details about space and time (private)
