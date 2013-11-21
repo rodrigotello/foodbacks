@@ -1,3 +1,4 @@
+# encoding: utf-8
 class FoodbacksController < ApplicationController
 
 	def index
@@ -10,12 +11,13 @@ class FoodbacksController < ApplicationController
 
 	def create
 		@foodback = current_user.foodbacks.build(params[:foodback])
+		@categories = Category.all
 		if @foodback.save
 			#omniauth = request.env["omniauth.auth"]
 			#facebook_user_token = omniauth['credentials']['token']
 
 			me = FbGraph::User.me(current_user.authentications.first.token)
-			me.link!(  :link => 'https://foodbacks.com',  :message => 'Acabo de publicar un foodback.')
+			me.link!(  :link => 'https://foodbacks.com',  :message => 'Acabo de publicar un Foodback.')
 			#me.feed!(  :message => 'Foodback',  :description => 'Foodback test')
 			flash[:success] = "Creaste un Foodback exitosamente!"
 			redirect_to @foodback

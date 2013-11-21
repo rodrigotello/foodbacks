@@ -2,6 +2,7 @@
 <div class="container">
 	<%#= image_tag @foodback.cover %>
 	<%= image_tag 'foodbackcover.jpg' %>
+	<%= @foodback.categories.name %>
 	<div class="row-fluid">
 		<h2><%= @foodback.title %> </h2>
 
@@ -9,27 +10,27 @@
 
 		<h4>Para: <%= @foodback.invited %></h4>
 
-		<h4><%= @foodback.content %>"</h4>
+		<h4>"<%= @foodback.content %>"</h4>
 
-		<% if current_user.id = @foodback.user.id %>
+		<% if (current_user.id == @foodback.user.id) %>
 				<h4>Dónde: <%= @foodback.address %></h4>
 		<% end %>
 		
 		<h4>Platillo: <%= @foodback.dish %></h4>
 
-		<h4>Receta:</h4>
+		<h4>Historia del platillo:</h4>
 
 		<h4>
 			<%= @foodback.recipe %>
 		</h4 >
 		
-		<% if @foodback.user.id == current_user.id %>
-				<%= link_to 'Editar', edit_foodback_path %>
-				<br/>
-				<%= link_to 'Eliminar', @foodback, method: :delete, confirm: "¿Estás seguro de eliminar a este elemento?" %>
+		<% if (@foodback.user.id == current_user.id) %>
+				<%= link_to 'Editar', edit_foodback_path, class: 'btn' %>
+				
+				<%= link_to 'Eliminar', @foodback, method: :delete, confirm: "¿Estás seguro de eliminar a este elemento?", class: 'btn' %>
 				<% else %>
 		<% end %>
-		
+		<br/>
 		<h3>Comparte este Foodback en Monterrey</h3>
 <!--
 			<%#= link_to 'Twitter', "https://twitter.com/share?url=" + "http://www.google.com" + "&text=" + "Compartiendo un Foodback en mi ciudad", class: 'btn', :target => '_blank' %>
@@ -50,3 +51,7 @@
 <a href="https://twitter.com/share" class="twitter-share-button" data-text="Compartiendo un Foodback" data-count="none">Tweet</a>
 
 <div class="fb-share-button" data-href="http://foodbacks.com" data-type="button"></div>
+
+<a href="//www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=http%3A%2F%2Ffarm8.staticflickr.com%2F7027%2F6851755809_df5b2051c9_z.jpg&description=Next%20stop%3A%20Pinterest" data-pin-do="buttonPin" data-pin-config="none" data-pin-color="red" data-pin-height="28"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_28.png" /></a>
+
+<a href="http://pinterest.com/pin/create/button/?url=http://inspired-ui.com&media={ImageURL}&description=DescriptionText" class="pinitbutton">Pin It</a>

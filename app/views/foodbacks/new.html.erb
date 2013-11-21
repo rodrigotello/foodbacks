@@ -43,14 +43,31 @@
       <%= f.label :address, 'Dirección' %>
       <%= f.text_field :address %>
 
-      <%= f.label :content, 'Mensaje'%>
+      <%= f.label :content, 'Las Gracias'%>
       <%= f.text_area :content, placeholder:'Cuéntanos tu historia, por qué quieres dar las gracias.'  %>
 
       <%= f.label :dish, 'Platillo' %>
       <%= f.text_field :dish, placeholder: 'Ej. Mole de la abuela' %>
 
-      <%= f.label :recipe, 'Receta' %>
-      <%= f.text_area :recipe, placeholder: 'Cuéntanos tu receta y no olvides decirnos por qué es especial.' %>
+      <!-- Aquí empieza el llamado de las categorias, empezando por el modelo que encontré en interneis -->
+      
+        <%# for category in Category.find(:all) %>
+          <%#= check_box_tag "foodback[category_ids][]", category.id, @foodback.categories.include?(category) %>
+          <%#= category.name %>
+        <%# end %>
+      <p>Describe tu platillo</p>
+      
+        <% for category in Category.find(:all) %>
+          <p>
+          <%= check_box_tag category.name %>
+          <%= category.name %>
+          </p>
+        <% end %>
+      <br/>
+      
+      <!-- Aquí termina -->
+      <%= f.label :recipe, 'Historia del platillo' %>
+      <%= f.text_area :recipe, placeholder: 'Cuéntanos la historia de este platillo, dinos por qué es especial.' %>
 
       <%#= f.label :cover, 'Cover' %>
       <%#= f.file_field :cover %>
