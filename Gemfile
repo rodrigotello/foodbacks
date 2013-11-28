@@ -10,6 +10,8 @@ gem 'paperclip'
 gem 'aws-s3'
 gem 'aws-sdk'
 
+gem 'debugger'
+
 gem 'fb_graph'
 
 group :development, :test do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131107020459) do
+ActiveRecord::Schema.define(:version => 20131122024050) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(:version => 20131107020459) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "categories_foodbacks", :force => true do |t|
+    t.integer "foodback_id"
+    t.integer "category_id"
+  end
+
+  add_index "categories_foodbacks", ["category_id", "foodback_id"], :name => "index_categories_foodbacks_on_category_id_and_foodback_id"
 
   create_table "foodbacks", :force => true do |t|
     t.integer  "user_id"

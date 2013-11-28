@@ -1,4 +1,6 @@
 # encoding: utf-8
+require 'debugger'
+
 class FoodbacksController < ApplicationController
 
 	def index
@@ -10,7 +12,14 @@ class FoodbacksController < ApplicationController
 	end
 
 	def create
+		#debugger
 		@foodback = current_user.foodbacks.build(params[:foodback])
+		Category.all.each do |category|
+			if params[category.name.to_sym] == "1"
+				puts params[category.name.to_sym]
+				@foodback.categories << category
+			end
+		end
 		@categories = Category.all
 		if @foodback.save
 			#omniauth = request.env["omniauth.auth"]

@@ -2,7 +2,11 @@
 <div class="container">
 	<%#= image_tag @foodback.cover %>
 	<%= image_tag 'foodbackcover.jpg' %>
-	<%= @foodback.categories.name %>
+	<% @foodback.categories.each do |c| %>
+		<small>
+			<%= c.name %>
+			qu</small>
+	<% end %>
 	<div class="row-fluid">
 		<h2><%= @foodback.title %> </h2>
 
