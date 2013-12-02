@@ -2,10 +2,14 @@
 <div class="container">
 	<%#= image_tag @foodback.cover %>
 	<%= image_tag 'foodbackcover.jpg' %>
-	<% @foodback.categories.each do |c| %>
-		<small>
-			<%= c.name %>
-			qu</small>
+	<% if @foodback.categories %>
+		<% @foodback.categories.each do |c| %>
+			<small>
+				<%= c.name %>
+			</small>
+		<% end %>
+		<% else %>
+		<p>No hay categorias</p>
 	<% end %>
 	<div class="row-fluid">
 		<h2><%= @foodback.title %> </h2>
@@ -26,7 +30,7 @@
 
 		<h4>
 			<%= @foodback.recipe %>
-		</h4 >
+		</h4>
 		
 		<% if (@foodback.user.id == current_user.id) %>
 				<%= link_to 'Editar', edit_foodback_path, class: 'btn' %>

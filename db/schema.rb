@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131122024050) do
+ActiveRecord::Schema.define(:version => 20131202213310) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(:version => 20131122024050) do
   end
 
   add_index "foodbacks", ["user_id", "city", "created_at"], :name => "index_foodbacks_on_user_id_and_city_and_created_at"
+
+  create_table "invitations", :force => true do |t|
+    t.integer  "invited_id"
+    t.integer  "foodback_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "invitations", ["foodback_id"], :name => "index_invitations_on_foodback_id"
+  add_index "invitations", ["invited_id"], :name => "index_invitations_on_invited_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
