@@ -8,7 +8,7 @@ class Foodback < ActiveRecord::Base
 
   has_attached_file :cover
 
-  has_one :invited, through: :invitation, source: :invited
+  has_one :invitation, through: :invitation, source: :invited
 
   validates :user_id, presence: true
   validates :title, presence: true
