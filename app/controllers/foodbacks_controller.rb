@@ -2,6 +2,9 @@
 require 'debugger'
 
 class FoodbacksController < ApplicationController
+	rescue_from FbGraph::InvalidRequest, with: :skip
+	#FbGraph::InvalidRequest
+	#OAuthException :: (#100) Required extended permission: share_item
 
 	def index
 		@allfoodback = Foodback.all
@@ -21,12 +24,17 @@ class FoodbacksController < ApplicationController
 			end
 		end
 		@categories = Category.all
+
 		if @foodback.save
 			#omniauth = request.env["omniauth.auth"]
 			#facebook_user_token = omniauth['credentials']['token']
 
 			me = FbGraph::User.me(current_user.authentications.first.token)
+			#if !me.link.nil?
 			me.link!(  :link => 'https://foodbacks.com',  :message => 'Acabo de publicar un Foodback.')
+			
+			
+			#end
 			#me.feed!(  :message => 'Foodback',  :description => 'Foodback test')
 			flash[:success] = "Creaste un Foodback exitosamente!"
 			redirect_to @foodback
@@ -34,6 +42,7 @@ class FoodbacksController < ApplicationController
 		else
 			render 'new'
 		end
+		
 	end
 
 	def destroy
@@ -109,6 +118,11 @@ class FoodbacksController < ApplicationController
 			render 'edit'
 		end
 	end
+
+	def skip
+			flash[:success] = "Creaste un Foodback exitosamente!"
+			redirect_to @foodback	
+		end
 
 
 end
