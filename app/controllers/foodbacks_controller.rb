@@ -30,12 +30,9 @@ class FoodbacksController < ApplicationController
 			#facebook_user_token = omniauth['credentials']['token']
 
 			me = FbGraph::User.me(current_user.authentications.first.token)
-			#if !me.link.nil?
 			me.link!(  :link => 'https://foodbacks.com',  :message => 'Acabo de publicar un Foodback.')
-			
-			
-			#end
 			#me.feed!(  :message => 'Foodback',  :description => 'Foodback test')
+
 			flash[:success] = "Creaste un Foodback exitosamente!"
 			redirect_to @foodback
 
