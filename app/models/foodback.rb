@@ -1,5 +1,5 @@
 class Foodback < ActiveRecord::Base
-  attr_accessible :user_id, :address, :city, :content, :cover, :date, :dish, :invited, :invitedmail, :recipe, :title
+  attr_accessible :user_id, :address, :city, :content, :cover, :date, :dish, :invited_name, :invitedmail, :recipe, :title
   
   belongs_to :user
   belongs_to :city
@@ -16,7 +16,7 @@ class Foodback < ActiveRecord::Base
   validates :address, presence: true
   validates :content, presence: true
   #validates :date, presence: true
-  validates :invited, presence: true
+  validates :invited_name, presence: true
   validates :dish, presence: true
   
 end

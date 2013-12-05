@@ -16,7 +16,7 @@
 
 		<h4>De: <%= @foodback.user.name %></h4>
 
-		<h4>Para: <%= @foodback.invited %></h4>
+		<h4>Para: <%= @foodback.invitation.nil? ? @foodback.invited_name : link_to(@foodback.invited.name, @foodback.invited)  %></h4>
 
 		<h4>"<%= @foodback.content %>"</h4>
 
