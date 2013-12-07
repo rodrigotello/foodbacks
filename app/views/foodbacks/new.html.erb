@@ -22,8 +22,8 @@
         };
     });
     </script>
-
 <% provide(:title, 'New Foodback') %>
+<%= @mssg %>
 <h1>Crea un Foodback</h1>
 <h2>Preparar comida es la mejor forma de dar las gracias</h2>
 <div class="row">
@@ -35,13 +35,16 @@
       <%= f.label :title, 'Título de tu invitación' %>
       <%= f.text_field :title, placeholder: 'Ej. "Gracias por apoyarme"' %>
 
-      <%= f.label :invited, 'Nombre de tu invitado' %>
+      <%= f.label :invited_name, 'Nombre de tu invitado' %>
       <%#= f.text_field :invited %>
-      <%= f.text_field :invited, id: "select_origin" %>
-      <input id="link_origin_id" name="link[origin_id]" type="hidden"/>
+      <%= f.text_field :invited_name, id: "select_origin" %>
+      <input id="link_origin_id" name="u_id" type="hidden"/>
 
       <%= f.label :address, 'Dirección' %>
       <%= f.text_field :address %>
+
+      <%= f.label :date, 'Fecha' %>
+      <%= f.datetime_picker :date, :dateFormat => "yy-mm-dd" %>
 
       <%= f.label :content, 'Las Gracias'%>
       <%= f.text_area :content, placeholder:'Cuéntanos tu historia, por qué quieres dar las gracias.'  %>

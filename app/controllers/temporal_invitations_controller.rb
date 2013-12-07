@@ -1,0 +1,2 @@
+class TemporalInvitationsController < ApplicationController
+end

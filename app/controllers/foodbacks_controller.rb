@@ -5,7 +5,7 @@ class FoodbacksController < ApplicationController
 	rescue_from FbGraph::InvalidRequest, with: :skip
 	#FbGraph::InvalidRequest
 	#OAuthException :: (#100) Required extended permission: share_item
-
+	#debugger
 	def index
 		@allfoodback = Foodback.all
 	end
@@ -15,7 +15,6 @@ class FoodbacksController < ApplicationController
 	end
 
 	def create
-		#debugger
 		@foodback = current_user.foodbacks.build(params[:foodback])
 		Category.all.each do |category|
 			if params[category.name.to_sym] == "1"
@@ -28,17 +27,25 @@ class FoodbacksController < ApplicationController
 		if @foodback.save
 			#omniauth = request.env["omniauth.auth"]
 			#facebook_user_token = omniauth['credentials']['token']
+			#crea invitacion temporal si hay FB Id (si se elecciono amigo de la lista de facebook)
+			if params[:u_id] != ''
+				invited = User.find_by_uid(params[:u_id].to_i)
+				if invited.nil?
+					#crear invitacion temporal
+					TemporalInvitation.create(uid: params[:u_id].to_i, foodback_id: @foodback.id)
+				else
+					#crear invitacion formal
+					Invitation.create(foodback_id: @foodback.id, invited_id: invited.id)
+				end
+				
+			end
 
 			me = FbGraph::User.me(current_user.authentications.first.token)
-			#if !me.link.nil?
 			me.link!(  :link => 'https://foodbacks.com',  :message => 'Acabo de publicar un Foodback.')
-			
-			
-			#end
-			#me.feed!(  :message => 'Foodback',  :description => 'Foodback test')
-			flash[:success] = "Creaste un Foodback exitosamente!"
-			redirect_to @foodback
 
+			#me.feed!(  :message => 'Foodback',  :description => 'Foodback test')
+			flash[:success] = "Creaste un Foodback exitosamente!"	
+			redirect_to @foodback
 		else
 			render 'new'
 		end
@@ -61,9 +68,10 @@ class FoodbacksController < ApplicationController
 			redirect_to root_path
 		end
 		@foodback = current_user.foodbacks.new
+
+		#Populates @people 4 friends list
 		me = FbGraph::User.me(current_user.authentications.first.token)
 		@bffs = me.friends
-
 		friends = []
 		if params[:term]
 			@bffs.each do |f| 
@@ -71,32 +79,17 @@ class FoodbacksController < ApplicationController
 					friends << f
 				end
 			end
-			#@people = @bffs.detect{|f| f.name == "%#{params[:term]}%"}
-		    #@people = Person.find(:all,:conditions => ['given_name LIKE ?', "#{params[:term]}%"])
 		else
-		    #@people = @bffs
-		    @bffs.each do |f| 
-				if f.name.include? "Ja"
-					friends << f
-				end
-			end
+			friends = @bffs
 		end
-
 		@people = friends
-		
-		#@people = User.all
+		#Ends populate
+
 		  respond_to do |format|  
 		    format.html # index.html.erb  
-		# Here is where you can specify how to handle the request for "/people.json"
-		#:json => @people.map{|u| {:id => u.id, :name => u.name}}.to_json }
 		    format.json { render :json => @people.map{|u| {:id => u.identifier, :name => u.name}}.to_json }
 		end
 
-
-		#me = FbGraph::User.me(current_user.authentications.first.token)
-		#@bffs = me.friends
-		#@current_word = @words.detect{|w| w.id == params[:id2]}
-		#@list.sort_by{|e| -e[:time_ago]}
 	end
 
 	def edit
