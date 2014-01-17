@@ -22,7 +22,7 @@
 
 		<% if (current_user.id == @foodback.user.id) %>
 				<h4>Dónde: <%= @foodback.address %></h4>
-				<h4>Cuándo: <%= @foodback.date %></h4>
+				<h4>Cuándo:	<%= time_tag @foodback.date %>
 		<% end %>
 		
 		<h4>Platillo: <%= @foodback.dish %></h4>
