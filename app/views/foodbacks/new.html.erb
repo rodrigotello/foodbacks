@@ -1,4 +1,5 @@
-<script type="text/javascript">
+<!--Script del Datetime Picker -->
+  <script type="text/javascript">
     $(function() {
 
     $('#select_origin').autocomplete({
@@ -21,9 +22,12 @@
                 .appendTo( ul );
         };
     });
-    </script>
+  </script>
+<!--Fin del Datepicker-->
 <% provide(:title, 'New Foodback') %>
+
 <%= @mssg %>
+
 <h1>Crea un Foodback</h1>
 <h2>Preparar comida es la mejor forma de dar las gracias</h2>
 <div class="row">
@@ -72,11 +76,9 @@
       <%= f.label :recipe, 'Historia del platillo' %>
       <%= f.text_area :recipe, placeholder: 'Cuéntanos la historia de este platillo, dinos por qué es especial.' %>
 
-      <%#= f.label :cover, 'Cover' %>
-      <%#= f.file_field :cover %>
+      <%= f.label :cover, 'Agrega una foto de portada a tu Foodback (opcional)' %>
+      <%= f.file_field :cover %>
 
-      <%# f.label :date %>
-      <%# f.datetime_field :date %>
       <br/>
       <%= f.submit "Crear este Foodback", class: "btn btn-large btn-primary" %>
     <% end %>

@@ -15,7 +15,7 @@ class Foodback < ActiveRecord::Base
   validates :title, presence: true
   validates :address, presence: true
   validates :content, presence: true
-  #validates :date, presence: true
+  validates :date, presence: true
   validates :invited_name, presence: true
   validates :dish, presence: true
   

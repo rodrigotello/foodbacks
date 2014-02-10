@@ -1,66 +1,47 @@
 
 <div class="container">
-	<%#= image_tag @foodback.cover %>
-	<%= image_tag 'foodbackcover.jpg' %>
+	<% if (@foodback.cover == true)  %> 
+			<%= image_tag @foodback.cover %>
+		<% else %>
+			<%= image_tag 'foodbackcover.jpg' %>
+	<% end %>
 	<% if @foodback.categories %>
 		<% @foodback.categories.each do |c| %>
 			<small>
-				<%= c.name %>
+				<%= c.name %>/
 			</small>
 		<% end %>
 		<% else %>
 		<p>No hay categorias</p>
 	<% end %>
 	<div class="row-fluid">
-		<h2><%= @foodback.title %> </h2>
-
-		<h4>De: <%= @foodback.user.name %></h4>
-
-		<h4>Para: <%= @foodback.invitation.nil? ? @foodback.invited_name : link_to(@foodback.invited.name, @foodback.invited)  %></h4>
-
-		<h4>"<%= @foodback.content %>"</h4>
-
-		<% if (current_user.id == @foodback.user.id) %>
-				<h4>Dónde: <%= @foodback.address %></h4>
-				<h4>Cuándo:	<%= time_tag @foodback.date %>
-		<% end %>
-		
-		<h4>Platillo: <%= @foodback.dish %></h4>
-
-		<h4>Historia del platillo:</h4>
-
-		<h4>
-			<%= @foodback.recipe %>
-		</h4>
-		
-		<% if (@foodback.user.id == current_user.id) %>
-				<%= link_to 'Editar', edit_foodback_path, class: 'btn' %>
-				
-				<%= link_to 'Eliminar', @foodback, method: :delete, confirm: "¿Estás seguro de eliminar a este elemento?", class: 'btn' %>
-				<% else %>
-		<% end %>
+		<center>
+			<h1><%= @foodback.title %> </h1>
+		</center>
+		<div class="span8">
+			<h4>De: <%= @foodback.user.name %></h4>
+			<h4>Para: <%= @foodback.invitation.nil? ? @foodback.invited_name : link_to(@foodback.invited.name, @foodback.invited)  %></h4>
+			<h4>"<%= @foodback.content %>"</h4>
+			<% if (current_user.id == @foodback.user.id) %>
+					<h4>Dónde: <%= @foodback.address %></h4>
+					<h4>Cuándo:	<%= time_tag @foodback.date %>
+			<% end %>
+			<h4>Platillo: <%= @foodback.dish %></h4>
+			<h4>Historia del platillo:</h4>
+			<h4>
+				<%= @foodback.recipe %>
+			</h4>
+			<% if (@foodback.user.id == current_user.id) %>
+					<%= link_to 'Editar', edit_foodback_path, class: 'btn' %>
+					
+					<%= link_to 'Eliminar', @foodback, method: :delete, confirm: "¿Estás seguro de eliminar a este elemento?", class: 'btn' %>
+					<% else %>
+			<% end %>
+		</div>
 		<br/>
-		<h3>Comparte este Foodback en Monterrey</h3>
-<!--
-			<%#= link_to 'Twitter', "https://twitter.com/share?url=" + "http://www.google.com" + "&text=" + "Compartiendo un Foodback en mi ciudad", class: 'btn', :target => '_blank' %>
-			
-				<%= link_to 'Facebook', 'facebook.com', class: 'btn', :target => '_blank'  %>
-			
-			
-				<%= link_to 'Pinterest', 'pinterest.com', class: 'btn', :target => '_blank'  %>
-				<a href="http://pinterest.com/pin/create/button/?url={URI-encoded URL of the page to pin}&media={URI-encoded URL of the image to pin}&description={optional URI-encoded description}" class="pin-it-button" count-layout="horizontal">
-    <img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" />
-</a>
+		<h4>Comparte este Foodback en Monterrey</h4>
+			<a href="https://twitter.com/share" class="twitter-share-button" data-text="Compartiendo un Foodback" data-count="none">Tweet</a>
+			<div class="fb-share-button" data-href="http://foodbacks.com" data-type="button"></div>
+			<a href="//www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=http%3A%2F%2Ffarm8.staticflickr.com%2F7027%2F6851755809_df5b2051c9_z.jpg&description=Next%20stop%3A%20Pinterest" data-pin-do="buttonPin" data-pin-config="none" data-pin-color="red" data-pin-height="14"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_28.png" /></a>
 	</div>
 </div>
-
-<a href="//www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=http%3A%2F%2Ffarm8.staticflickr.com%2F7027%2F6851755809_df5b2051c9_z.jpg&description=Next%20stop%3A%20Pinterest" data-pin-do="buttonPin" data-pin-config="above"><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a>
--->
-
-<a href="https://twitter.com/share" class="twitter-share-button" data-text="Compartiendo un Foodback" data-count="none">Tweet</a>
-
-<div class="fb-share-button" data-href="http://foodbacks.com" data-type="button"></div>
-
-<a href="//www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=http%3A%2F%2Ffarm8.staticflickr.com%2F7027%2F6851755809_df5b2051c9_z.jpg&description=Next%20stop%3A%20Pinterest" data-pin-do="buttonPin" data-pin-config="none" data-pin-color="red" data-pin-height="28"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_28.png" /></a>
-
-<a href="http://pinterest.com/pin/create/button/?url=http://inspired-ui.com&media={ImageURL}&description=DescriptionText" class="pinitbutton">Pin It</a>
